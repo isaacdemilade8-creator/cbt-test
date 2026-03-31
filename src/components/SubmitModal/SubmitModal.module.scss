@@ -1,0 +1,161 @@
+@use 'sass:color';
+@use '../../styles/variables' as v;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.modal {
+  width: min(440px, 92vw);
+  padding: 28px;
+  border: 1px solid v.$border-default;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    rgba(14, 18, 32, 0.98);
+  box-shadow: v.$shadow-modal;
+  animation: modalIn 0.22s ease both;
+
+  @media (max-width: v.$mobile - 1px) {
+    padding: 22px;
+  }
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  border-radius: 16px;
+  background: v.$amber-bg;
+  color: v.$amber;
+  font-family: v.$font-display;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.title {
+  margin: 0 0 8px;
+  color: v.$text-primary;
+  font-family: v.$font-display;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.description {
+  margin: 0 0 20px;
+  color: v.$text-secondary;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 10px;
+  border: 1px solid v.$border-subtle;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  text-align: center;
+}
+
+.statVal {
+  font-family: v.$font-display;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.green {
+  color: v.$green;
+}
+
+.amber {
+  color: v.$amber;
+}
+
+.red {
+  color: v.$red;
+}
+
+.statLabel {
+  color: v.$text-muted;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+
+  @media (max-width: v.$mobile - 1px) {
+    flex-direction: column;
+  }
+}
+
+.btn {
+  flex: 1;
+  min-height: 48px;
+  border-radius: 14px;
+  border: 1px solid v.$border-default;
+  font-family: v.$font-body;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: v.$transition-base;
+}
+
+.cancel {
+  background: rgba(255, 255, 255, 0.03);
+  color: v.$text-secondary;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: v.$text-primary;
+  }
+}
+
+.confirm {
+  border-color: transparent;
+  background: linear-gradient(135deg, v.$accent, #59a1ff);
+  color: #fff;
+  box-shadow: 0 16px 32px rgba(59, 107, 255, 0.24);
+
+  &:hover {
+    background: linear-gradient(
+      135deg,
+      color.adjust(v.$accent, $lightness: -4%),
+      color.adjust(#59a1ff, $lightness: -4%)
+    );
+    box-shadow: 0 20px 36px rgba(59, 107, 255, 0.3);
+  }
+}

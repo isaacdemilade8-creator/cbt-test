@@ -1,0 +1,63 @@
+$bg-base: #080b12;
+$bg-surface: #0e1220;
+$bg-elevated: #141826;
+$bg-card: #1c2236;
+
+$border-subtle: rgba(255, 255, 255, 0.07);
+$border-default: rgba(255, 255, 255, 0.13);
+
+$text-primary: #eef0f8;
+$text-secondary: #8b91ac;
+$text-muted: #4e5470;
+
+$accent: #3b6bff;
+$accent-light: #6b8fff;
+$accent-glow: rgba(59, 107, 255, 0.15);
+
+$green: #22d47e;
+$green-bg: rgba(34, 212, 126, 0.1);
+$amber: #f5a623;
+$amber-bg: rgba(245, 166, 35, 0.1);
+$red: #ff4d4d;
+$red-bg: rgba(255, 77, 77, 0.12);
+$purple: #a855f7;
+$purple-bg: rgba(168, 85, 247, 0.1);
+
+$cell-answered: rgba(34, 212, 126, 0.15);
+$cell-answered-bd: rgba(34, 212, 126, 0.3);
+$cell-flagged-bd: rgba(245, 166, 35, 0.3);
+$cell-current-bd: #3b6bff;
+$cell-current-bg: rgba(59, 107, 255, 0.15);
+
+$font-display: 'Clash Display', sans-serif;
+$font-body: 'Satoshi', sans-serif;
+
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+$space-2xl: 48px;
+
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 18px;
+$radius-pill: 999px;
+
+$topbar-height: 58px;
+$subjecttab-height: 52px;
+$bottomnav-height: 56px;
+$navigator-width: 280px;
+
+$shadow-accent: 0 4px 16px rgba(59, 107, 255, 0.3);
+$shadow-accent-hover: 0 4px 24px rgba(59, 107, 255, 0.5);
+$shadow-modal: 0 32px 80px rgba(0, 0, 0, 0.6);
+
+$transition-fast: all 0.15s ease;
+$transition-base: all 0.2s ease;
+$transition-smooth: all 0.3s ease;
+
+$mobile: 768px;
+$tablet: 1024px;
+$desktop: 1200px;

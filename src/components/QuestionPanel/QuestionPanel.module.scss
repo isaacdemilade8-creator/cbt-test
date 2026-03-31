@@ -1,0 +1,454 @@
+@use '../../styles/variables' as *;
+
+.panel {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+  padding: $space-xl $space-2xl;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(59, 107, 255, 0.12), transparent 28%),
+    radial-gradient(circle at top right, rgba(34, 212, 126, 0.08), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 22%);
+  animation: slideIn 0.24s ease;
+
+  @media (max-width: $mobile - 1px) {
+    padding: $space-md $space-lg $space-lg;
+    gap: $space-md;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.qMeta {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  flex-wrap: wrap;
+}
+
+.qNumberBadge {
+  padding: 7px 14px;
+  border-radius: $radius-pill;
+  border: 1px solid rgba(107, 143, 255, 0.22);
+  background: linear-gradient(135deg, rgba(59, 107, 255, 0.2), rgba(59, 107, 255, 0.08));
+  color: $accent-light;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.35px;
+  text-transform: uppercase;
+}
+
+.qSubjectTag {
+  padding: 7px 12px;
+  border-radius: $radius-pill;
+  border: 1px solid $border-subtle;
+  background: rgba(255, 255, 255, 0.03);
+  color: $text-secondary;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.flagBtn {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-pill;
+  background: rgba(255, 255, 255, 0.02);
+  color: $text-muted;
+  cursor: pointer;
+  font-family: $font-body;
+  font-size: 12px;
+  font-weight: 600;
+  transition: $transition-base;
+
+  &:hover {
+    border-color: rgba(245, 166, 35, 0.35);
+    background: rgba(245, 166, 35, 0.08);
+    color: $amber;
+  }
+
+  &.flagged {
+    border-color: rgba(245, 166, 35, 0.35);
+    background: linear-gradient(135deg, rgba(245, 166, 35, 0.14), rgba(245, 166, 35, 0.06));
+    color: $amber;
+  }
+}
+
+.progressCard {
+  border: 1px solid $border-subtle;
+  border-radius: 22px;
+  padding: 20px 22px;
+  background:
+    linear-gradient(135deg, rgba(14, 18, 32, 0.98), rgba(20, 24, 38, 0.92)),
+    $bg-surface;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  @media (max-width: $mobile - 1px) {
+    padding: 18px;
+    border-radius: 18px;
+  }
+}
+
+.progressHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: $space-md;
+  margin-bottom: 16px;
+
+  @media (max-width: $mobile - 1px) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+}
+
+.progressEyebrow,
+.questionEyebrow {
+  margin: 0 0 6px;
+  color: $text-muted;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+}
+
+.progressTitle {
+  margin: 0;
+  font-family: $font-display;
+  font-size: 28px;
+  font-weight: 600;
+  color: $text-primary;
+  letter-spacing: -0.8px;
+
+  @media (max-width: $mobile - 1px) {
+    font-size: 24px;
+  }
+}
+
+.progressCopy {
+  max-width: 280px;
+  margin: 0;
+  color: $text-secondary;
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: right;
+
+  @media (max-width: $mobile - 1px) {
+    max-width: none;
+    text-align: left;
+  }
+}
+
+.progressTrack {
+  height: 10px;
+  border-radius: $radius-pill;
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.progressFill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, $accent, #59a1ff 52%, $green);
+  box-shadow: 0 0 22px rgba(59, 107, 255, 0.35);
+}
+
+.questionContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
+  padding-bottom: $space-lg;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: $radius-pill;
+  }
+}
+
+.questionCard {
+  padding: 22px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
+    rgba(12, 16, 29, 0.9);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  @media (max-width: $mobile - 1px) {
+    padding: 18px;
+    border-radius: 18px;
+  }
+}
+
+.questionText {
+  margin: 0 0 12px;
+  color: $text-primary;
+  font-size: 26px;
+  line-height: 1.42;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+
+  @media (max-width: $mobile - 1px) {
+    font-size: 21px;
+    line-height: 1.45;
+  }
+}
+
+.instruction {
+  margin: 0;
+  color: $text-secondary;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.optionsList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 2px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent),
+    rgba(14, 18, 32, 0.9);
+  cursor: pointer;
+  transition: $transition-smooth;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: transparent;
+    transition: $transition-base;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: rgba(107, 143, 255, 0.24);
+    background:
+      linear-gradient(180deg, rgba(59, 107, 255, 0.08), transparent),
+      rgba(20, 24, 38, 0.96);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
+
+    &::before {
+      background: rgba(107, 143, 255, 0.7);
+    }
+
+    .optionIndicator {
+      border-color: rgba(107, 143, 255, 0.45);
+    }
+  }
+
+  &.selected {
+    border-color: rgba(107, 143, 255, 0.36);
+    background:
+      linear-gradient(135deg, rgba(59, 107, 255, 0.18), rgba(89, 161, 255, 0.08)),
+      rgba(16, 22, 40, 0.98);
+    box-shadow:
+      0 18px 40px rgba(8, 11, 18, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    &::before {
+      background: linear-gradient(180deg, $accent, #59a1ff);
+    }
+
+    .optionKey {
+      color: #fff;
+      background: linear-gradient(135deg, $accent, #59a1ff);
+      border-color: transparent;
+      box-shadow: 0 12px 24px rgba(59, 107, 255, 0.28);
+    }
+
+    .optionText {
+      color: $text-primary;
+    }
+
+    .optionIndicator {
+      border-color: rgba(107, 143, 255, 0.5);
+      background: rgba(107, 143, 255, 0.12);
+
+      &::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+
+  @media (max-width: $mobile - 1px) {
+    padding: 16px;
+    border-radius: 16px;
+  }
+}
+
+.optionMain {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+  flex: 1;
+}
+
+.optionKey {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: $font-display;
+  font-size: 13px;
+  font-weight: 600;
+  color: $text-primary;
+  transition: $transition-base;
+}
+
+.optionText {
+  flex: 1;
+  color: $text-secondary;
+  font-size: 15px;
+  line-height: 1.7;
+  transition: color 0.2s ease;
+
+  @media (max-width: $mobile - 1px) {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}
+
+.optionIndicator {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.02);
+  flex-shrink: 0;
+  position: relative;
+  transition: $transition-base;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $accent, #59a1ff);
+    opacity: 0;
+    transform: scale(0.65);
+    transition: $transition-base;
+  }
+}
+
+.navButtons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 0;
+  padding-top: $space-md;
+  background: linear-gradient(180deg, rgba(8, 11, 18, 0), rgba(8, 11, 18, 0.96) 38%);
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: $mobile - 1px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.navBtn {
+  min-height: 52px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: $font-body;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition-base;
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+.secondaryBtn,
+.ghostBtn {
+  background: rgba(255, 255, 255, 0.025);
+  color: $text-secondary;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.14);
+    color: $text-primary;
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.ghostBtn {
+  background: rgba(255, 255, 255, 0.015);
+  color: $text-muted;
+
+  &:hover:not(:disabled) {
+    border-color: rgba(245, 166, 35, 0.28);
+    background: rgba(245, 166, 35, 0.08);
+    color: $amber;
+  }
+}
+
+.primaryBtn {
+  border-color: transparent;
+  background: linear-gradient(135deg, $accent, #59a1ff);
+  color: #fff;
+  box-shadow: 0 18px 34px rgba(59, 107, 255, 0.26);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 20px 40px rgba(59, 107, 255, 0.34);
+    filter: brightness(1.04);
+  }
+}
