@@ -17,6 +17,7 @@
   @media (max-width: $mobile - 1px) {
     padding: $space-md $space-lg $space-lg;
     gap: $space-md;
+    overflow: visible;
   }
 }
 
@@ -192,6 +193,14 @@
   &::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.08);
     border-radius: $radius-pill;
+  }
+
+  @media (max-width: $mobile - 1px) {
+    flex: none;
+    min-height: auto;
+    overflow: visible;
+    padding-right: 0;
+    padding-bottom: 0;
   }
 }
 
@@ -396,6 +405,9 @@
 
   @media (max-width: $mobile - 1px) {
     grid-template-columns: 1fr;
+    position: static;
+    padding-top: $space-sm;
+    background: transparent;
   }
 }
 

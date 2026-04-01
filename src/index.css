@@ -10,7 +10,7 @@ html,
 body,
 #root {
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
   background: #080b12;
   color: #eef0f8;
   font-family: 'Satoshi', sans-serif;

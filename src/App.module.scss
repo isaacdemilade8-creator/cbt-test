@@ -25,6 +25,13 @@
     mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 75%);
     opacity: 0.35;
   }
+
+  @media (max-width: v.$mobile - 1px) {
+    height: auto;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 }
 
 .mainContainer {
@@ -37,6 +44,7 @@
 
   @media (max-width: v.$mobile - 1px) {
     padding: v.$space-sm;
+    overflow: visible;
   }
 }
 
@@ -58,7 +66,10 @@
   backdrop-filter: blur(16px);
 
   @media (max-width: v.$mobile - 1px) {
+    flex: none;
     flex-direction: column;
+    min-height: auto;
+    overflow: visible;
     border-radius: 22px;
     box-shadow: none;
   }

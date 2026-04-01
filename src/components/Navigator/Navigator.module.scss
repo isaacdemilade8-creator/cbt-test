@@ -13,7 +13,8 @@
 
   @media (max-width: $mobile - 1px) {
     width: 100%;
-    max-height: 320px;
+    max-height: none;
+    overflow: visible;
     border-left: none;
     border-top: 1px solid $border-subtle;
   }
@@ -151,6 +152,10 @@
   &::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.08);
     border-radius: $radius-pill;
+  }
+
+  @media (max-width: $mobile - 1px) {
+    overflow: visible;
   }
 }
 
