@@ -1,5 +1,5 @@
 import type { MouseEvent } from 'react';
-import type { SubmitModalProps } from '../../types/exam.types';
+import type { SubmitModalProps } from '../../../shared/types/app.types';
 import styles from './SubmitModal.module.scss';
 
 const SubmitModal = ({ isOpen, stats, onCancel, onConfirm }: SubmitModalProps) => {

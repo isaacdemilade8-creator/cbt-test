@@ -1,15 +1,8 @@
-import type { QuestionPanelProps } from '../../types/exam.types';
+import type { QuestionPanelProps } from '../../../shared/types/app.types';
 import SubjectTabs from '../SubjectTabs/SubjectTabs';
 import styles from './QuestionPanel.module.scss';
 
 const optionKeys = ['A', 'B', 'C', 'D'] as const;
-
-const subjectLabels: Record<string, string> = {
-  math: 'Mathematics',
-  english: 'English Language',
-  physics: 'Physics',
-  chemistry: 'Chemistry',
-};
 
 const QuestionPanel = ({
   questions,
@@ -30,8 +23,6 @@ const QuestionPanel = ({
   const selectedAnswer = answers[currentIndex];
   const isFlagged = flagged[currentIndex];
   const progressPercent = Math.round((questionNumber / totalQuestions) * 100);
-  const subjectLabel =
-    subjectLabels[question.subject.toLowerCase()] ?? question.subject;
 
   return (
     <div className={styles.panel}>
@@ -45,7 +36,7 @@ const QuestionPanel = ({
         <span className={styles.qNumberBadge}>
           Question {questionNumber} of {totalQuestions}
         </span>
-        <span className={styles.qSubjectTag}>{subjectLabel}</span>
+        <span className={styles.qSubjectTag}>{question.subject}</span>
         <button
           type="button"
           className={`${styles.flagBtn} ${isFlagged ? styles.flagged : ''}`}
@@ -65,9 +56,7 @@ const QuestionPanel = ({
             <p className={styles.progressEyebrow}>Exam progress</p>
             <h2 className={styles.progressTitle}>{progressPercent}% covered</h2>
           </div>
-          <p className={styles.progressCopy}>
-            Stay steady and move through each question carefully.
-          </p>
+          <p className={styles.progressCopy}>Answer carefully and keep moving through the paper.</p>
         </div>
 
         <div className={styles.progressTrack}>
@@ -79,15 +68,13 @@ const QuestionPanel = ({
         <div className={styles.questionCard}>
           <p className={styles.questionEyebrow}>Current prompt</p>
           <p className={styles.questionText}>{question.text}</p>
-          <p className={styles.instruction}>
-            Choose the most correct answer from the options below.
-          </p>
+          <p className={styles.instruction}>Choose the most correct answer from the options below.</p>
         </div>
 
         <ul className={styles.optionsList}>
           {question.options.map((option, index) => (
             <li
-              key={index}
+              key={`${question.id}-${index}`}
               className={`${styles.option} ${selectedAnswer === index ? styles.selected : ''}`}
               onClick={() => onAnswer(index)}
             >

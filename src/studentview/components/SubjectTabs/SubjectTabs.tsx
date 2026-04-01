@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import type { SubjectTabsProps } from '../../types/exam.types';
+import type { SubjectTabsProps } from '../../../shared/types/app.types';
 import styles from './SubjectTabs.module.scss';
 
 const SubjectTabs = ({ subjects, activeSubject, onSubjectChange }: SubjectTabsProps) => {

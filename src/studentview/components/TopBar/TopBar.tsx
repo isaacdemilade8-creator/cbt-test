@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
-import type { TopBarProps } from '../../types/exam.types';
+import type { TopBarProps } from '../../../shared/types/app.types';
 import styles from './TopBar.module.scss';
-import cbt from '/cbt.png';
 
 const formatTime = (seconds: number) => {
   const hours = Math.floor(seconds / 3600);
@@ -13,7 +12,13 @@ const formatTime = (seconds: number) => {
     .join(':');
 };
 
-const TopBar = ({ totalSeconds, totalDuration, onSubmitClick }: TopBarProps) => {
+const TopBar = ({
+  totalSeconds,
+  totalDuration,
+  studentName,
+  studentId,
+  onSubmitClick,
+}: TopBarProps) => {
   const ringRef = useRef<SVGCircleElement>(null);
   const fraction = totalSeconds / totalDuration;
   const timerClass =
@@ -29,11 +34,18 @@ const TopBar = ({ totalSeconds, totalDuration, onSubmitClick }: TopBarProps) => 
     ringRef.current.style.stroke = ringColor;
   }, [fraction, ringColor]);
 
+  const initials = studentName
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? '')
+    .join('');
+
   return (
     <header className={styles.topbar}>
       <div className={styles.brandCluster}>
         <div className={styles.logoMark}>
-          <div className={styles.logoIcon}><img src={cbt} alt="ExamPro Logo" width={40} height={40} style={{borderRadius: '10px'}} /></div>
+          <div className={styles.logoIcon}>E</div>
           <div className={styles.logoCopy}>
             <span className={styles.logoText}>ExamPro</span>
             <span className={styles.logoSubtext}>Computer-Based Testing Suite</span>
@@ -43,14 +55,10 @@ const TopBar = ({ totalSeconds, totalDuration, onSubmitClick }: TopBarProps) => 
         <div className={styles.examInfo}>
           <div className={styles.examMetaRow}>
             <span className={styles.liveBadge}>Live Session</span>
-            <span className={styles.examMeta}>Exam Mock Interface</span>
+            <span className={styles.examMeta}>Registered student exam</span>
           </div>
-          <p className={styles.examTitle}>
-            JAMB UTME 2024 - Mathematics, English, Physics, Chemistry
-          </p>
-          <p className={styles.examSubtitle}>
-            Reg. No: 23450987JA · Centre: Lagos State CBT Centre
-          </p>
+          <p className={styles.examTitle}>Practice examination workspace</p>
+          <p className={styles.examSubtitle}>Student ID: {studentId}</p>
         </div>
       </div>
 
@@ -70,10 +78,10 @@ const TopBar = ({ totalSeconds, totalDuration, onSubmitClick }: TopBarProps) => 
         </div>
 
         <div className={styles.candidatePill}>
-          <div className={styles.avatar}>AO</div>
+          <div className={styles.avatar}>{initials || 'ST'}</div>
           <div className={styles.candidateInfo}>
             <span className={styles.candidateLabel}>Candidate</span>
-            <span className={styles.candidateName}>Adaeze Okonkwo</span>
+            <span className={styles.candidateName}>{studentName}</span>
           </div>
         </div>
 

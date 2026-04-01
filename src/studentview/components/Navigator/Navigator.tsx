@@ -1,4 +1,4 @@
-import type { NavigatorProps } from '../../types/exam.types';
+import type { NavigatorProps } from '../../../shared/types/app.types';
 import styles from './Navigator.module.scss';
 
 const legendItems = [

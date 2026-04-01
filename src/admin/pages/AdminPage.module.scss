@@ -1,0 +1,396 @@
+@use '../../studentview/styles/variables' as v;
+
+.page {
+  min-height: 100vh;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top left, rgba(59, 107, 255, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(34, 212, 126, 0.1), transparent 24%),
+    linear-gradient(180deg, #0a0f1b 0%, #080b12 100%);
+  animation: backgroundShift 25s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.shell {
+  width: min(1380px, 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header,
+.panel,
+.summaryCard {
+  border: 1px solid v.$border-subtle;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    rgba(14, 18, 32, 0.94);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, v.$accent, v.$green, v.$purple);
+    border-radius: 24px 24px 0 0;
+  }
+
+  h1 {
+    margin: 8px 0 10px;
+    color: v.$text-primary;
+    font-family: v.$font-display;
+    font-size: clamp(2rem, 4vw, 3rem);
+    background: linear-gradient(135deg, v.$text-primary, v.$accent-light);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  p {
+    max-width: 60ch;
+    color: v.$text-secondary;
+    line-height: 1.6;
+  }
+
+  @media (max-width: v.$tablet - 1px) {
+    flex-direction: column;
+  }
+}
+
+.eyebrow {
+  color: v.$accent-light;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  background: rgba(59, 107, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 12px;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.backLink,
+.primaryAction,
+.table button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+}
+
+.backLink,
+.table button {
+  border: 1px solid v.$border-default;
+  color: v.$text-secondary;
+  background: rgba(255, 255, 255, 0.03);
+
+  &:hover {
+    border-color: v.$accent;
+    color: v.$accent-light;
+    background: rgba(59, 107, 255, 0.05);
+    transform: translateY(-1px);
+  }
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  animation: slideInUp 0.8s ease-out 0.2s both;
+
+  @media (max-width: v.$tablet - 1px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: v.$mobile - 1px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.summaryCard {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, v.$accent, v.$green);
+  }
+
+  span {
+    color: v.$text-muted;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+
+  strong {
+    color: v.$text-primary;
+    font-family: v.$font-display;
+    font-size: 34px;
+    animation: countUp 1s ease-out;
+  }
+}
+
+@keyframes countUp {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  animation: slideInUp 0.8s ease-out 0.4s both;
+
+  @media (max-width: v.$tablet - 1px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  padding: 24px;
+  animation: fadeInScale 0.6s ease-out both;
+  animation-delay: calc(var(--index, 0) * 0.1s);
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.panelHeader {
+  margin-bottom: 18px;
+
+  h2 {
+    margin-bottom: 6px;
+    color: v.$text-primary;
+    font-family: v.$font-display;
+    font-size: 24px;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(90deg, v.$accent, v.$green);
+      border-radius: 2px;
+    }
+  }
+
+  p {
+    color: v.$text-secondary;
+    line-height: 1.6;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  span {
+    color: v.$text-primary;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid v.$border-default;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.035);
+    color: v.$text-primary;
+    outline: none;
+    transition: all 0.3s ease;
+
+    &:focus {
+      border-color: rgba(89, 161, 255, 0.5);
+      box-shadow: 0 0 0 4px rgba(59, 107, 255, 0.12);
+      transform: translateY(-1px);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+}
+
+.optionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+
+  @media (max-width: v.$mobile - 1px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.primaryAction {
+  border: none;
+  background: linear-gradient(135deg, v.$accent, #59a1ff);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(59, 107, 255, 0.3);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(59, 107, 255, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 14px 12px;
+    border-top: 1px solid v.$border-subtle;
+    text-align: left;
+    vertical-align: top;
+    transition: background-color 0.2s ease;
+  }
+
+  th {
+    color: v.$text-muted;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    background: rgba(255, 255, 255, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  td {
+    color: v.$text-secondary;
+    line-height: 1.5;
+  }
+
+  tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+  }
+}
+
+.emptyState {
+  padding: 18px 0 0;
+  color: v.$text-muted;
+  text-align: center;
+  font-style: italic;
+}

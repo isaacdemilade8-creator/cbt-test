@@ -1,0 +1,175 @@
+@use '../styles/variables' as v;
+
+@import url('https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Satoshi:wght@300;400;500;600;700&display=swap');
+
+.appShell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(59, 107, 255, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(34, 212, 126, 0.1), transparent 22%),
+    linear-gradient(180deg, #0a0f1b 0%, #080b12 100%);
+  animation: backgroundShift 30s ease-in-out infinite alternate;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 120px 120px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent 75%);
+    opacity: 0.35;
+    animation: gridMove 20s linear infinite;
+  }
+
+  @keyframes backgroundShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+
+  @keyframes gridMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 120px 120px; }
+  }
+
+  @media (max-width: v.$mobile - 1px) {
+    height: auto;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+.mainContainer {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: v.$space-lg;
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease-out;
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: v.$mobile - 1px) {
+    padding: v.$space-sm;
+    overflow: visible;
+  }
+}
+
+.examBody {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  max-width: 1400px;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid v.$border-subtle;
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0)),
+    rgba(14, 18, 32, 0.92);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  animation: slideInScale 0.8s ease-out 0.2s both;
+
+  @keyframes slideInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @media (max-width: v.$mobile - 1px) {
+    flex: none;
+    flex-direction: column;
+    min-height: auto;
+    overflow: visible;
+    border-radius: 22px;
+    box-shadow: none;
+  }
+}
+
+.loadingState {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: v.$space-lg;
+  background:
+    radial-gradient(circle at top left, rgba(59, 107, 255, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(34, 212, 126, 0.1), transparent 22%),
+    linear-gradient(180deg, #0a0f1b 0%, #080b12 100%);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.loadingCard {
+  width: min(520px, 100%);
+  padding: 32px;
+  border: 1px solid v.$border-subtle;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0)),
+    rgba(14, 18, 32, 0.95);
+  text-align: center;
+  animation: bounceIn 0.6s ease-out;
+
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  h1 {
+    margin-bottom: 10px;
+    color: v.$text-primary;
+    font-family: v.$font-display;
+    font-size: 28px;
+    background: linear-gradient(135deg, v.$text-primary, v.$accent-light);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  p {
+    color: v.$text-secondary;
+    line-height: 1.6;
+  }
+}

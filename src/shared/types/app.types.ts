@@ -1,8 +1,9 @@
 export interface Question {
-  id?: number;
+  id: number;
   text: string;
   options: string[];
   subject: string;
+  correctAnswer: number;
 }
 
 export interface Subject {
@@ -11,6 +12,30 @@ export interface Subject {
   startIndex: number;
   count: number;
   color: string;
+}
+
+export interface Student {
+  id: number;
+  studentId: string;
+  name: string;
+  registeredAt: string;
+}
+
+export interface ExamResult {
+  id: number;
+  studentId: string;
+  studentName: string;
+  score: number;
+  total: number;
+  percentage: number;
+  submittedAt: string;
+  answers: Array<number | null>;
+}
+
+export interface AppDatabase {
+  students: Student[];
+  questions: Question[];
+  results: ExamResult[];
 }
 
 export interface ExamStats {
@@ -23,9 +48,16 @@ export interface ExamStats {
 export type Answers = Array<number | null>;
 export type Flagged = boolean[];
 
+export interface StudentSession {
+  studentId: string;
+  name: string;
+}
+
 export interface TopBarProps {
   totalSeconds: number;
   totalDuration: number;
+  studentName: string;
+  studentId: string;
   onSubmitClick: () => void;
 }
 
